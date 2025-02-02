@@ -1,7 +1,430 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="https://i.imgur.com/NRNAxh3.png" type="image/png">
+    <title>Aftermath Icons</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --background: #f8fafc;
+            --foreground: #0f172a;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --secondary-text: #64748b;
+            --placeholder: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--foreground);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .search-section {
+            position: sticky;
+            top: 0;
+            background: var(--background);
+            padding: 1rem 0;
+            z-index: 100;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Update input styles */
+        input[type="text"] {
+            flex: 1;
+            padding: 0.75rem 1.25rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            color: var(--foreground);
+        }
+
+        input[type="text"]::placeholder {
+            color: var(--placeholder);
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .sort-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sort-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background: var(--card-bg);
+            color: var(--foreground);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border);
+        }
+
+        .sort-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+		
+		/* Adjust grid to prevent cards from becoming too wide */
+		.icon-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(160px, 200px));
+			gap: 1.5rem;
+			justify-content: center;
+		}
+		
+        .icon-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .icon-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-image {
+			max-width: 100px;
+			max-height: 100px;
+			width: auto;
+			height: auto;
+			object-fit: contain;
+			margin: 0 auto 1rem auto; /* Combines horizontal centering with bottom margin */
+		}
+
+        .icon-name {
+			font-size: 0.75rem;  /* Approximately 12px */
+			line-height: 1.3;
+			font-weight: 500;
+			color: var(--foreground);
+			margin-bottom: 0.5rem;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
+		}
+		
+		body.dark-mode {
+            --background: #0f172a;
+            --foreground: #f8fafc;
+            --card-bg: #1e293b;
+            --border: #334155;
+            --secondary-text: #94a3b8;
+            --placeholder: #64748b;
+        }
+
+        /* Add theme toggle button styles */
+        #themeToggle {
+            padding: 0.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: transform 0.2s ease;
+            color: var(--foreground);
+        }
+		
+		#themeToggle:hover {
+            transform: scale(1.1);
+        }
+
+        .icon-tags {
+            font-size: 0.8rem;
+            color: var(--secondary-text);
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { bottom: -50px; }
+            to { bottom: 20px; }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            color: var(--secondary-text);
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+	
+    <div class="container">
+        <div class="search-section">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search icons...">
+                <button id="themeToggle">🌙</button>
+            </div>
+            <div class="sort-buttons">
+                <button class="sort-btn active" data-category="all">All</button>
+                <button class="sort-btn" data-category="focus">Focus</button>
+                <button class="sort-btn" data-category="idea">Idea</button>
+                <button class="sort-btn" data-category="portrait">Portrait</button>
+            </div>
+        </div>
+
+        <div class="icon-grid" id="iconGrid"></div>
+        <div class="empty-state" id="emptyState">No icons found matching your criteria</div>
+    </div>
+
+    <div class="notification" id="notification">Copied to clipboard!</div>
+	
+	<script>
+        // Add dark mode functionality
+        const themeToggle = document.getElementById('themeToggle');
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        // Load saved theme preference
+        const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (savedDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '🌞';
+        }
+
+        themeToggle.addEventListener('click', toggleDarkMode);
+
+        // ... (rest of existing JavaScript remains the same) ...
+    </script>
+
+    <script>
+        // Focus icons data
+        const icons = [
+			{
+                name: "GFX_focus_generic_coming_soon",
+                image: "https://i.imgur.com/1FU475e.png", // PNG URL example
+                tags: ["focus"]
+            },
+            {
+                name: "GFX_focus_DPK_road_to_war",
+                image: "https://i.imgur.com/ptPaVWG.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_anti_communism",
+                image: "https://i.imgur.com/1adz4Tp.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_democrat_economy",
+                image: "https://i.imgur.com/otUgqAV.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_denazification",
+                image: "https://i.imgur.com/UsoTNQE.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_european_focus",
+                image: "https://i.imgur.com/mDqNhw1.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_form_nato",
+                image: "https://i.imgur.com/5rXBJwu.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_german_occupation",
+                image: "https://i.imgur.com/7ybk2qo.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_improve_relations",
+                image: "https://i.imgur.com/ReUjEVt.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_iron_curtain",
+                image: "https://i.imgur.com/77f6liH.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_navy_tech",
+                image: "https://i.imgur.com/7KR1f08.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_oppenheimer",
+                image: "https://i.imgur.com/1qVom7z.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_republican_economy",
+                image: "https://i.imgur.com/lj6R7RF.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_surrender_delegation",
+                image: "https://i.imgur.com/ZLoF1dA.png", // PNG URL example
+                tags: ["focus"]
+            },
+			{
+                name: "GFX_focus_USA_surrender_terms",
+                image: "https://i.imgur.com/AdJqwO6.png", // PNG URL example
+                tags: ["focus"]
+            },
+			// Ideas icons data
+        ];
+
+        // DOM elements
+        const iconGrid = document.getElementById('iconGrid');
+        const searchInput = document.getElementById('searchInput');
+        const sortButtons = document.querySelectorAll('.sort-btn');
+        const emptyState = document.getElementById('emptyState');
+        const notification = document.getElementById('notification');
+
+        let activeCategory = 'all';
+        let searchQuery = '';
+
+        // Initial render
+        renderIcons(icons);
+
+        // Event listeners
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase();
+            filterIcons();
+        });
+
+        sortButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                sortButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                filterIcons();
+            });
+        });
+
+        function filterIcons() {
+            const filtered = icons.filter(icon => {
+                const matchesSearch = icon.name.toLowerCase().includes(searchQuery);
+                const matchesCategory = activeCategory === 'all' || 
+                                      icon.tags.includes(activeCategory);
+                return matchesSearch && matchesCategory;
+            });
+            
+            renderIcons(filtered);
+            emptyState.style.display = filtered.length ? 'none' : 'block';
+        }
+
+        // Updated render function with title attribute for tooltips
+        function renderIcons(iconsArray) {
+            iconGrid.innerHTML = iconsArray.map(icon => `
+                <div class="icon-card" data-name="${icon.name}">
+                    <img src="${icon.image}" class="icon-image" alt="${icon.name}">
+                    <div class="icon-name" title="${icon.name}">${icon.name}</div>
+                    <div class="icon-tags">${icon.tags.join(', ')}</div>
+                </div>
+            `).join('');
+
+            // Add click handlers to new cards
+            document.querySelectorAll('.icon-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    copyToClipboard(card.dataset.name);
+                    showNotification();
+                });
+            });
+        }
+
+        function copyToClipboard(text) {
+            try {
+                navigator.clipboard.writeText(text);
+            } catch (err) {
+                console.error('Failed to copy text:', err);
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function showNotification() {
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 2000);
+        }
+
+        // Drag & drop image upload (bonus feature)
+        document.addEventListener('dragover', (e) => e.preventDefault());
+        document.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const newIcon = {
+                        name: files[0].name.replace(/\.[^/.]+$/, ""),
+                        image: event.target.result,
+                        tags: ["custom"]
+                    };
+                    icons.push(newIcon);
+                    filterIcons();
+                };
+                reader.readAsDataURL(files[0]);
+            }
+        });
+    </script>
 </body>
 </html>
