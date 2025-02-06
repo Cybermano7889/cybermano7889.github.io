@@ -103,6 +103,9 @@
 		}
 		
         .icon-card {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
@@ -116,14 +119,19 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+		
+		.icon-image-container {
+		  height: 120px;
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  margin-bottom: 8px;
+		}
 
         .icon-image {
-			max-width: 100px;
-			max-height: 100px;
-			width: auto;
-			height: auto;
-			object-fit: contain;
-			margin: 0 auto 1rem auto; /* Combines horizontal centering with bottom margin */
+		  max-width: 80%;
+		  max-height: 80%;
+		  object-fit: contain;
 		}
 
         .icon-name {
@@ -240,11 +248,7 @@
         }
 
         themeToggle.addEventListener('click', toggleDarkMode);
-
-        // ... (rest of existing JavaScript remains the same) ...
-    </script>
-
-    <script>
+		
         // Focus icons data
         const icons = [
 			{
@@ -324,10 +328,21 @@
             },
 			{
                 name: "GFX_focus_DPK_so_it_begins",
-                image: "https://imgur.com/Ja3X9Z6.png", // PNG URL example
+                image: "https://i.imgur.com/Ja3X9Z6.png", // PNG URL example
                 tags: ["focus"]
             },
 			// Ideas icons data
+			{
+                name: "GFX_idea_DDR_operation_osoaviakhim",
+                image: "https://i.imgur.com/18odAMz.png", // PNG URL example
+                tags: ["idea"]
+            },
+			// portrait icons data
+			{
+                name: "GFX_Portrait_Soviet_Joseph_Stalin",
+                image: "https://i.imgur.com/Gkd9Irx.png", // PNG URL example
+                tags: ["portrait"]
+            },
         ];
 
         // DOM elements
@@ -372,21 +387,23 @@
 
         // Updated render function with title attribute for tooltips
         function renderIcons(iconsArray) {
-            iconGrid.innerHTML = iconsArray.map(icon => `
-                <div class="icon-card" data-name="${icon.name}">
-                    <img src="${icon.image}" class="icon-image" alt="${icon.name}">
-                    <div class="icon-name" title="${icon.name}">${icon.name}</div>
-                    <div class="icon-tags">${icon.tags.join(', ')}</div>
-                </div>
-            `).join('');
+			iconGrid.innerHTML = iconsArray.map(icon => `
+				<div class="icon-card" data-name="${icon.name}">
+					<div class="icon-image-container"> <!-- Added container -->
+						<img src="${icon.image}" class="icon-image" alt="${icon.name}">
+					</div>
+					<div class="icon-name" title="${icon.name}">${icon.name}</div>
+					<div class="icon-tags">${icon.tags.join(', ')}</div>
+				</div>
+			`).join('');
 
             // Add click handlers to new cards
             document.querySelectorAll('.icon-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    copyToClipboard(card.dataset.name);
-                    showNotification();
-                });
-            });
+				card.addEventListener('click', () => {
+					copyToClipboard(card.dataset.name);
+					showNotification();
+				});
+			});
         }
 
         function copyToClipboard(text) {
