@@ -233,183 +233,103 @@
     <div class="notification" id="notification">Copied to clipboard!</div>
 	
 	<script>
-        // Add dark mode functionality
-        const themeToggle = document.getElementById('themeToggle');
-        
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
-            localStorage.setItem('darkMode', isDarkMode);
-        }
-
-        // Load saved theme preference
-        const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-        if (savedDarkMode) {
-            document.body.classList.add('dark-mode');
-            themeToggle.textContent = '🌞';
-        }
-
-        themeToggle.addEventListener('click', toggleDarkMode);
+		// Add dark mode functionality
+		const themeToggle = document.getElementById('themeToggle');
 		
-        // Focus icons data
-        const icons = [
-			{
-                name: "GFX_focus_generic_coming_soon",
-                image: "https://i.imgur.com/1FU475e.png", // PNG URL
-                tags: ["focus"]
-            },
-            {
-                name: "GFX_focus_DPK_road_to_war",
-                image: "https://i.imgur.com/ptPaVWG.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_anti_communism",
-                image: "https://i.imgur.com/1adz4Tp.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_democrat_economy",
-                image: "https://i.imgur.com/otUgqAV.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_denazification",
-                image: "https://i.imgur.com/UsoTNQE.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_european_focus",
-                image: "https://i.imgur.com/mDqNhw1.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_form_nato",
-                image: "https://i.imgur.com/5rXBJwu.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_german_occupation",
-                image: "https://i.imgur.com/7ybk2qo.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_improve_relations",
-                image: "https://i.imgur.com/ReUjEVt.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_iron_curtain",
-                image: "https://i.imgur.com/77f6liH.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_navy_tech",
-                image: "https://i.imgur.com/7KR1f08.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_oppenheimer",
-                image: "https://i.imgur.com/1qVom7z.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_republican_economy",
-                image: "https://i.imgur.com/lj6R7RF.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_surrender_delegation",
-                image: "https://i.imgur.com/ZLoF1dA.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_USA_surrender_terms",
-                image: "https://i.imgur.com/AdJqwO6.png", // PNG URL
-                tags: ["focus"]
-            },
-			{
-                name: "GFX_focus_DPK_so_it_begins",
-                image: "https://i.imgur.com/Ja3X9Z6.png", // PNG URL
-                tags: ["focus"]
-            },
+		function toggleDarkMode() {
+			document.body.classList.toggle('dark-mode');
+			const isDarkMode = document.body.classList.contains('dark-mode');
+			themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+			localStorage.setItem('darkMode', isDarkMode);
+		}
+
+		// Load saved theme preference
+		const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+		if (savedDarkMode) {
+			document.body.classList.add('dark-mode');
+			themeToggle.textContent = '🌞';
+		}
+
+		themeToggle.addEventListener('click', toggleDarkMode);
+		
+		// Focus icons data
+		const icons = [
+			{ name: "GFX_focus_generic_coming_soon", image: "https://i.imgur.com/1FU475e.png", tags: ["focus"] },
+			{ name: "GFX_focus_DPK_road_to_war", image: "https://i.imgur.com/ptPaVWG.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_anti_communism", image: "https://i.imgur.com/1adz4Tp.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_democrat_economy", image: "https://i.imgur.com/otUgqAV.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_denazification", image: "https://i.imgur.com/UsoTNQE.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_european_focus", image: "https://i.imgur.com/mDqNhw1.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_form_nato", image: "https://i.imgur.com/5rXBJwu.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_german_occupation", image: "https://i.imgur.com/7ybk2qo.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_improve_relations", image: "https://i.imgur.com/ReUjEVt.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_iron_curtain", image: "https://i.imgur.com/77f6liH.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_navy_tech", image: "https://i.imgur.com/7KR1f08.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_oppenheimer", image: "https://i.imgur.com/1qVom7z.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_republican_economy", image: "https://i.imgur.com/lj6R7RF.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_surrender_delegation", image: "https://i.imgur.com/ZLoF1dA.png", tags: ["focus"] },
+			{ name: "GFX_focus_USA_surrender_terms", image: "https://i.imgur.com/AdJqwO6.png", tags: ["focus"] },
+			{ name: "GFX_focus_DPK_so_it_begins", image: "https://i.imgur.com/Ja3X9Z6.png", tags: ["focus"] },
 			// Ideas icons data
-			{
-                name: "GFX_idea_DDR_operation_osoaviakhim",
-                image: "https://i.imgur.com/18odAMz.png", // PNG URL
-                tags: ["idea"]
-            },
-			// portrait icons data
-			{
-                name: "GFX_Portrait_Soviet_Joseph_Stalin",
-                image: "https://i.imgur.com/Gkd9Irx.png", // PNG URL
-                tags: ["portrait"]
-            },
-        ];
+			{ name: "GFX_idea_DDR_operation_osoaviakhim", image: "https://i.imgur.com/18odAMz.png", tags: ["idea"] },
+			// Portrait icons data
+			{ name: "GFX_Portrait_Soviet_Joseph_Stalin", image: "https://i.imgur.com/Gkd9Irx.png", tags: ["portrait"] },
+		];
 
-        // DOM elements
-        const iconGrid = document.getElementById('iconGrid');
-        const searchInput = document.getElementById('searchInput');
-        const sortButtons = document.querySelectorAll('.sort-btn');
-        const emptyState = document.getElementById('emptyState');
-        const notification = document.getElementById('notification');
+		// DOM elements
+		const iconGrid = document.getElementById('iconGrid');
+		const searchInput = document.getElementById('searchInput');
+		const sortButtons = document.querySelectorAll('.sort-btn');
+		const emptyState = document.getElementById('emptyState');
+		const notification = document.getElementById('notification');
 
-        let activeCategory = 'all';
-        let searchQuery = '';
+		let activeCategory = 'all';
+		let searchQuery = '';
 
-        // Initial render
-        renderIcons(icons);
+		// Initial render
+		renderIcons(icons);
 
-        // Event listeners
-        searchInput.addEventListener('input', (e) => {
-            searchQuery = e.target.value.toLowerCase();
-            filterIcons();
-        });
+		// Event listeners
+		searchInput.addEventListener('input', (e) => {
+			searchQuery = e.target.value.toLowerCase();
+			filterIcons();
+		});
 
-        sortButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                sortButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                activeCategory = button.dataset.category;
-                filterIcons();
-            });
-        });
+		sortButtons.forEach(button => {
+			button.addEventListener('click', () => {
+				sortButtons.forEach(btn => btn.classList.remove('active'));
+				button.classList.add('active');
+				activeCategory = button.dataset.category;
+				filterIcons();
+			});
+		});
 
-        function filterIcons() {
-            const filtered = icons.filter(icon => {
-                const matchesSearch = icon.name.toLowerCase().includes(searchQuery);
-                const matchesCategory = activeCategory === 'all' || 
-				icon.tags.includes(activeCategory);
-                return matchesSearch && matchesCategory;
-            });
-            
-            renderIcons(filtered);
-            emptyState.style.display = filtered.length ? 'none' : 'block';
-        }
+		// Event delegation: one listener on the container for all icon cards.
+		iconGrid.addEventListener('click', (event) => {
+			const card = event.target.closest('.icon-card');
+			if (card && iconGrid.contains(card)) {
+				const iconName = card.dataset.name;
+				if (iconName) {
+					copyToClipboard(iconName);
+					showNotification();
+				}
+			}
+		});
 
-        // Render function with title attribute for tooltips
-        function renderIcons(iconsArray) {
+		// Render function (no individual click listeners here)
+		function renderIcons(iconsArray) {
 			iconGrid.innerHTML = iconsArray.map(icon => `
 				<div class="icon-card" data-name="${icon.name}">
-					<div class="icon-image-container"> <!-- Added container -->
+					<div class="icon-image-container">
 						<img src="${icon.image}" class="icon-image" alt="${icon.name}">
 					</div>
 					<div class="icon-name" title="${icon.name}">${icon.name}</div>
 					<div class="icon-tags">${icon.tags.join(', ')}</div>
 				</div>
 			`).join('');
+		}
 
-            // Add click handlers to new cards
-            document.querySelectorAll('.icon-card').forEach(card => {
-				card.addEventListener('click', () => {
-					copyToClipboard(card.dataset.name);
-					showNotification();
-				});
-			});
-        }
-
-        async function copyToClipboard(text) {
+		async function copyToClipboard(text) {
 			try {
 				await navigator.clipboard.writeText(text);
 			} catch (err) {
@@ -424,14 +344,23 @@
 			}
 		}
 
+		function showNotification() {
+			notification.style.display = 'block';
+			setTimeout(() => {
+				notification.style.display = 'none';
+			}, 2000);
+		}
 
-        function showNotification() {
-            notification.style.display = 'block';
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 2000);
-        }
-		
-    </script>
+		function filterIcons() {
+			const filtered = icons.filter(icon => {
+				const matchesSearch = icon.name.toLowerCase().includes(searchQuery);
+				const matchesCategory = activeCategory === 'all' || icon.tags.includes(activeCategory);
+				return matchesSearch && matchesCategory;
+			});
+			
+			renderIcons(filtered);
+			emptyState.style.display = filtered.length ? 'none' : 'block';
+		}
+	</script>
 </body>
 </html>
