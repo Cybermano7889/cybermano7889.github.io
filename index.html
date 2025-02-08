@@ -445,26 +445,7 @@
                 notification.style.display = 'none';
             }, 2000);
         }
-
-        // Drag & drop image upload (bonus feature)
-        document.addEventListener('dragover', (e) => e.preventDefault());
-        document.addEventListener('drop', (e) => {
-            e.preventDefault();
-            const files = e.dataTransfer.files;
-            if (files.length > 0 && files[0].type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    const newIcon = {
-                        name: files[0].name.replace(/\.[^/.]+$/, ""),
-                        image: event.target.result,
-                        tags: ["custom"]
-                    };
-                    icons.push(newIcon);
-                    filterIcons();
-                };
-                reader.readAsDataURL(files[0]);
-            }
-        });
+		
     </script>
 </body>
 </html>
