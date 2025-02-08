@@ -173,21 +173,6 @@
             --placeholder: #64748b;
         }
 
-        /* Add theme toggle button styles */
-        #themeToggle {
-            padding: 0.5rem;
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-size: 1.25rem;
-            transition: transform 0.2s ease;
-            color: var(--foreground);
-        }
-		
-		#themeToggle:hover {
-            transform: scale(1.1);
-        }
-
         .icon-tags {
             font-size: 0.8rem;
             color: var(--secondary-text);
@@ -271,94 +256,94 @@
         const icons = [
 			{
                 name: "GFX_focus_generic_coming_soon",
-                image: "https://i.imgur.com/1FU475e.png", // PNG URL example
+                image: "https://i.imgur.com/1FU475e.png", // PNG URL
                 tags: ["focus"]
             },
             {
                 name: "GFX_focus_DPK_road_to_war",
-                image: "https://i.imgur.com/ptPaVWG.png", // PNG URL example
+                image: "https://i.imgur.com/ptPaVWG.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_anti_communism",
-                image: "https://i.imgur.com/1adz4Tp.png", // PNG URL example
+                image: "https://i.imgur.com/1adz4Tp.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_democrat_economy",
-                image: "https://i.imgur.com/otUgqAV.png", // PNG URL example
+                image: "https://i.imgur.com/otUgqAV.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_denazification",
-                image: "https://i.imgur.com/UsoTNQE.png", // PNG URL example
+                image: "https://i.imgur.com/UsoTNQE.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_european_focus",
-                image: "https://i.imgur.com/mDqNhw1.png", // PNG URL example
+                image: "https://i.imgur.com/mDqNhw1.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_form_nato",
-                image: "https://i.imgur.com/5rXBJwu.png", // PNG URL example
+                image: "https://i.imgur.com/5rXBJwu.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_german_occupation",
-                image: "https://i.imgur.com/7ybk2qo.png", // PNG URL example
+                image: "https://i.imgur.com/7ybk2qo.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_improve_relations",
-                image: "https://i.imgur.com/ReUjEVt.png", // PNG URL example
+                image: "https://i.imgur.com/ReUjEVt.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_iron_curtain",
-                image: "https://i.imgur.com/77f6liH.png", // PNG URL example
+                image: "https://i.imgur.com/77f6liH.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_navy_tech",
-                image: "https://i.imgur.com/7KR1f08.png", // PNG URL example
+                image: "https://i.imgur.com/7KR1f08.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_oppenheimer",
-                image: "https://i.imgur.com/1qVom7z.png", // PNG URL example
+                image: "https://i.imgur.com/1qVom7z.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_republican_economy",
-                image: "https://i.imgur.com/lj6R7RF.png", // PNG URL example
+                image: "https://i.imgur.com/lj6R7RF.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_surrender_delegation",
-                image: "https://i.imgur.com/ZLoF1dA.png", // PNG URL example
+                image: "https://i.imgur.com/ZLoF1dA.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_USA_surrender_terms",
-                image: "https://i.imgur.com/AdJqwO6.png", // PNG URL example
+                image: "https://i.imgur.com/AdJqwO6.png", // PNG URL
                 tags: ["focus"]
             },
 			{
                 name: "GFX_focus_DPK_so_it_begins",
-                image: "https://i.imgur.com/Ja3X9Z6.png", // PNG URL example
+                image: "https://i.imgur.com/Ja3X9Z6.png", // PNG URL
                 tags: ["focus"]
             },
 			// Ideas icons data
 			{
                 name: "GFX_idea_DDR_operation_osoaviakhim",
-                image: "https://i.imgur.com/18odAMz.png", // PNG URL example
+                image: "https://i.imgur.com/18odAMz.png", // PNG URL
                 tags: ["idea"]
             },
 			// portrait icons data
 			{
                 name: "GFX_Portrait_Soviet_Joseph_Stalin",
-                image: "https://i.imgur.com/Gkd9Irx.png", // PNG URL example
+                image: "https://i.imgur.com/Gkd9Irx.png", // PNG URL
                 tags: ["portrait"]
             },
         ];
@@ -395,7 +380,7 @@
             const filtered = icons.filter(icon => {
                 const matchesSearch = icon.name.toLowerCase().includes(searchQuery);
                 const matchesCategory = activeCategory === 'all' || 
-                                      icon.tags.includes(activeCategory);
+				icon.tags.includes(activeCategory);
                 return matchesSearch && matchesCategory;
             });
             
@@ -403,7 +388,7 @@
             emptyState.style.display = filtered.length ? 'none' : 'block';
         }
 
-        // Updated render function with title attribute for tooltips
+        // Render function with title attribute for tooltips
         function renderIcons(iconsArray) {
 			iconGrid.innerHTML = iconsArray.map(icon => `
 				<div class="icon-card" data-name="${icon.name}">
@@ -424,20 +409,21 @@
 			});
         }
 
-        function copyToClipboard(text) {
-            try {
-                navigator.clipboard.writeText(text);
-            } catch (err) {
-                console.error('Failed to copy text:', err);
-                // Fallback for older browsers
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-            }
-        }
+        async function copyToClipboard(text) {
+			try {
+				await navigator.clipboard.writeText(text);
+			} catch (err) {
+				console.error('Failed to copy text:', err);
+				// Fallback for older browsers
+				const textarea = document.createElement('textarea');
+				textarea.value = text;
+				document.body.appendChild(textarea);
+				textarea.select();
+				document.execCommand('copy');
+				document.body.removeChild(textarea);
+			}
+		}
+
 
         function showNotification() {
             notification.style.display = 'block';
